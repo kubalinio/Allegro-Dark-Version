@@ -74,6 +74,7 @@ const tilesImages = [
 
 const ImageTilesContainer = () => {
 	const [showArrow, setShowArrow] = useState(false);
+
 	return (
 		<div className=' bg-allegro_dark md:col-start-3 md:row-start-3 md:row-end-3 h-full py-12 px-6'>
 			<div className=''>

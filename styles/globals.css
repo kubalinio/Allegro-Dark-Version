@@ -21,6 +21,10 @@ a {
 	padding: 0;
 }
 
+/* Carousel Banner */
+
+/* Arrow Custom */
+
 .carousel.carousel-slider .control-arrow {
 	display: flex;
 	justify-content: center;
@@ -41,22 +45,46 @@ a {
 	border: 2px solid #292929;
 }
 
+/* Dots Custom */
+
+.carousel.carousel-slider {
+	display: flex;
+	flex-direction: column-reverse;
+	height: 100%;
+}
+
 .carousel .control-dots {
+	position: relative !important;
 	margin-left: auto !important;
 	margin-right: auto !important;
-	background: #292929 !important;
+	margin-top: 0 !important;
+	margin-bottom: 0 !important;
+	padding: 0 !important;
+}
+
+/* Carousel Image */
+
+.carousel .slider-wrapper {
 	margin: 0 !important;
+	height: 100% !important;
 }
 
-.carousel .control-dots li {
-	background: #656565 !important;
-	opacity: 1 !important;
-	box-shadow: none !important;
+.carousel .slider-wrapper ul,
+.carousel .slider-wrapper li,
+.carousel .slider-wrapper div,
+.carousel .slider-wrapper img {
+	height: 100% !important;
 }
 
-.carousel .control-dots .dot.selected {
-	background: #ff5a00 !important;
+@media (min-width: 1024px) {
+	.carousel .control-dots {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
 }
+
+/*  */
 
 .swiper {
 	width: 100%;
