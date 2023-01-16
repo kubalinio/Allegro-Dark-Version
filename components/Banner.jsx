@@ -37,8 +37,7 @@ const Banner = () => {
 		return (
 			<button
 				className={`bg-white mx-3 rounded-full w-3 h-3 lg:mx-0 
-				 lg:w-full lg:h-[52px] lg:bg-transparent ${
-						isSelected ? 'bg-orange-500 lg:rounded-none lg:border-t-[3px]  lg:border-orange-500 ' : ''
+				 lg:w-full lg:h-[52px] lg:bg-transparent ${isSelected ? 'bg-orange-500 lg:rounded-none lg:border-t-[3px]  lg:border-orange-500 ' : ''
 					} `}
 				onClick={onClickHandler}
 				onKeyDown={onClickHandler}
@@ -56,7 +55,7 @@ const Banner = () => {
 	};
 
 	return (
-		<div className='bg-allegro_dark-light md:col-start-3 md:row-end-1 md:row-start-1 '>
+		<div className='bg-allegro_dark-light md:col-start-3 md:row-end-1 md:row-start-1 md:min-h-[304px]'>
 			<div onMouseOver={() => setShowArrow(false)} onMouseLeave={() => setShowArrow(false)} className='h-full'>
 				<Carousel
 					autoPlay

@@ -140,7 +140,7 @@ const benefitItems = [
 	},
 ];
 
-const Icon = ({ icon }) => <span className='pr-3 py-2 text-2xl'>{icon}</span>;
+const Icon = ({ icon }) => <span className='pr-3 pb-[9px] text-2xl'>{icon}</span>;
 
 const tabs = [
 	{
@@ -165,9 +165,8 @@ const NavHeader = ({ activeTab, onTabClicked }) => (
 					<button
 						type='button'
 						onClick={() => onTabClicked(index)}
-						className={`py-2 px-4 uppercase whitespace-nowrap ${
-							activeTab === index ? 'text-orange-500' : 'text-white'
-						} `}
+						className={`py-2 px-4 uppercase whitespace-nowrap ${activeTab === index ? 'text-orange-500' : 'text-white'
+							} `}
 					>
 						{tab.name}
 					</button>
@@ -180,9 +179,8 @@ const NavHeader = ({ activeTab, onTabClicked }) => (
 const Tab = ({ children, isActive }) => {
 	return (
 		<div
-			className={`pt-4 top-0 left-0 ${isActive ? 'flex' : 'hidden'}  ${
-				isActive ? 'opacity-100' : 'opacity-0'
-			}  w-full ${isActive ? 'visible' : 'invisible'} ${isActive ? 'translate-y-0' : 'translate-y-5'}  transition-all`}
+			className={`pt-4 top-0 left-0 ${isActive ? 'flex' : 'hidden'}  ${isActive ? 'opacity-100' : 'opacity-0'
+				}  w-full ${isActive ? 'visible' : 'invisible'} ${isActive ? 'translate-y-0' : 'translate-y-5'}  transition-all`}
 		>
 			{children}
 		</div>

@@ -1,28 +1,56 @@
-import Image from "next/image"
-import Link from "next/link"
-import { urlFor } from "../sanity"
-import { Product } from "../typings"
+import Image from 'next/image'
+import Link from 'next/link';
+import React from 'react'
+import Carousel from 'react-multi-carousel'
+import { urlFor } from '../sanity';
+import { Product } from '../typings'
 
+const responsive = {
+    desktop2: {
+        breakpoint: { max: 3000, min: 1024 },
+        items: 3
+    },
+    desktop1: {
+        breakpoint: { max: 1280, min: 900 },
+        items: 2
+    },
+    desktop: {
+        breakpoint: { max: 900, min: 768 },
+        items: 1
+    },
+    tablet2: {
+        breakpoint: { max: 768, min: 600 },
+        items: 1
+    },
+    tablet: {
+        breakpoint: { max: 600, min: 464 },
+        items: 1
+    },
+    mobile: {
+        breakpoint: { max: 464, min: 0 },
+        items: 1
+    }
+};
 
 type Props = {
     products: Product[]
 }
 
-const HitsOffer = ({ products }: Props) => {
+const MainOccasions = ({ products }: Props) => {
     return (
-        <div className="flex flex-grow basis-full max-w-full w-full sm:basis-1/2 sm:max-w-[50%] sm:w-1/2 xl:basis-[34%] xl:max-w-[34%] xl:w-[34%]">
-            <div className="px-8 py-6" >
-                <h4 className="mb-4 text-xl font-bold text-white">Hity z reklamy</h4>
+        <div className="flex flex-col">
 
-                {/* Product List */}
-                <div className="flex flex-col gap-4 md:gap-2 ">
-                    {products.slice(0, 4).map((product) => (
-                        // Link
-                        <div>
-                            {/* // Product Card */}
-                            <div className='flex'>
+            <div className='flex flex-col  w-full'>
+
+                <div className='w-full'>
+                    <h5 className='mb-4 text-xl font-bold text-white'>Warto zobaczyć</h5>
+                    {/* Swiper Carousel Free mode with navigation */}
+                    <Carousel centerMode={true} responsive={responsive}  >
+                        {products.map((product, i) => (
+
+                            <div className='flex flex-col min-w-[225px] max-w-[225px] '>
                                 {/* //  Left Side */}
-                                <div className='relative'>
+                                <div className='relative w-full'>
                                     {/* Super cena */}
                                     {product.superPrice &&
                                         <div className='absolute top-0 left-0 mt-2 ml-[6px]'>
@@ -30,8 +58,8 @@ const HitsOffer = ({ products }: Props) => {
                                         </div>
                                     }
                                     {/* zdjecie */}
-                                    <div className='w-24 h-[135px]' >
-                                        <Image src={urlFor(product?.mainImage).url()} alt={product?.title} width={100} height={190} className='w-full h-full object-cover mt-5' />
+                                    <div className='w-144 h-[144px]' >
+                                        <Image src={urlFor(product?.mainImage).url()} alt={product?.title} width={100} height={190} className='w-full h-full object-contain mt-5' />
                                     </div>
                                 </div>
 
@@ -87,12 +115,21 @@ const HitsOffer = ({ products }: Props) => {
                                 </div>
 
                             </div>
-                        </div>
-                    ))}
+
+                        ))}
+                    </Carousel>
+
                 </div>
+            </div>
+
+            {/* See more */}
+            <div className='text-gray-200 text-center px-6'>
+                <hr className='border-t-[1px] border-t-gray-400  mb-3' />
+
+                <Link href='/' className='uppercase tracking-wider' >Zobacz więcej</Link>
             </div>
         </div>
     )
 }
 
-export default HitsOffer
+export default MainOccasions

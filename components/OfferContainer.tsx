@@ -11,10 +11,9 @@ type Props = {
 const OfferContainer = ({ products }: Props) => {
 	return (
 
-
 		<div className='hidden relative bg-allegro_dark h-full px-6 pt-4 pb-10 xl:grid col-start-5 col-end-5 row-start-3 row-end-3 grid-cols-[100%] grid-rows-[auto 1fr auto 1fr] '>
 
-			<h5 className=' text-white'>Oferta wybrana dla Ciebie</h5>
+			<h5 className=' text-white font-bold'>Oferta wybrana dla Ciebie</h5>
 
 			{/* Product */}
 			<div>
@@ -40,7 +39,7 @@ const OfferContainer = ({ products }: Props) => {
 							</div>
 
 							{/* right Side */}
-							<div className='text-white ml-2'>
+							<div className='text-white ml-2 leading-5'>
 								<ul>
 									{/* Smart Okazja */}
 									<li className='pt-2'>

@@ -54,6 +54,7 @@ const Header = () => {
 					<div className='mr-1'>
 						<EllipsisHorizontalCircleIcon className='icon-nav' />
 					</div>
+
 					<a href='/' className='mr-1'>
 						<StarIcon className='icon-nav' />
 					</a>
@@ -76,13 +77,32 @@ const Header = () => {
 						<ShoppingBagIcon className='icon-nav' />
 					</div>
 
-					<div className='mt-2 xl:ml-4'>
-						<button type='button' onClick={handleDropDown} className='flex text-white items-center py-2'>
+					<div className='relative mt-2 xl:ml-4'>
+						<button type='button' onClick={handleDropDown} className='flex  text-white items-center py-2'>
 							<UserIcon className='icon-nav mr-0 xl:hidden' />
 							<span className='hidden xl:block whitespace-nowrap text-sm mr-2'>Moje Allegro</span>
 							<ChevronDownIcon className={`h-5 hidden xl:block ${!dropdownOpen ? '' : 'rotate-180'} `} />
 						</button>
-						<div data-role='dropdown-drop' className='hidden'></div>
+						{/* Panel Logowania/klienta  */}
+
+						<div data-role='dropdown-drop' className='absolute top-10 right-0 flex w-[350px] h-[400px] border border-white bg-allegro_dark-light  z-50'>
+							<div className='flex flex-col p-4'>
+								{/* Image */}
+								<div>
+									<Image src='https://a.allegroimg.com/original/122180/20799df0408198ded7d97a1c0167' width={287} height={184} alt='' className='w-full object-contain' />
+								</div>
+
+								{/* Hello */}
+								<div className='text-center text-white'>
+									<h3 className='my-2 text-xl font-semibold' >Witaj w Allegro!</h3>
+									<p className='text-sm text-left' >Zaloguj się i zobacz swoje zakupy, obserwowane oferty i powiadomienia. W Allegro jesteś u siebie!</p>
+								</div>
+
+								{/* Button */}
+								<div>button</div>
+							</div>
+
+						</div>
 					</div>
 
 					{/* smart absolute */}

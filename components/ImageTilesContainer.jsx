@@ -1,13 +1,35 @@
 import { useState } from 'react';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { FreeMode, Navigation } from 'swiper';
+import Carousel from 'react-multi-carousel';
+import 'react-multi-carousel/lib/styles.css';
 
 import Image from 'next/image';
 
-import 'swiper/css';
-import 'swiper/css/free-mode';
-import 'swiper/css/pagination';
-import 'swiper/css/navigation';
+const responsive = {
+	desktop2: {
+		breakpoint: { max: 3000, min: 1024 },
+		items: 5
+	},
+	desktop1: {
+		breakpoint: { max: 1024, min: 900 },
+		items: 3
+	},
+	desktop: {
+		breakpoint: { max: 900, min: 768 },
+		items: 2
+	},
+	tablet2: {
+		breakpoint: { max: 768, min: 600 },
+		items: 3
+	},
+	tablet: {
+		breakpoint: { max: 600, min: 464 },
+		items: 2
+	},
+	mobile: {
+		breakpoint: { max: 464, min: 0 },
+		items: 1
+	}
+};
 
 const tilesImages = [
 	{
@@ -78,33 +100,27 @@ const ImageTilesContainer = () => {
 	const [showArrow, setShowArrow] = useState(false);
 
 	return (
-		<div className=' bg-allegro_dark md:col-start-3 md:row-start-3 md:row-end-3 h-full py-12 px-6'>
-			<div className=''>
+		<div className=' bg-allegro_dark md:col-start-3 md:row-start-3 md:row-end-3 h-full py-6 px-6'>
+			<div>
 				<h5 className='mb-4 font-bold text-white'>Warto zobaczyć</h5>
 
-				<div onMouseOver={() => setShowArrow(true)} onMouseLeave={() => setShowArrow(false)}>
+				<div onMouseOver={() => setShowArrow(true)} onMouseLeave={() => setShowArrow(false)} className='mt-5'>
 					{/* Swiper Carousel Free mode with navigation */}
-					<Swiper
-						slidesPerView={6}
-						spaceBetween={0}
-						freeMode={true}
-						navigation={showArrow}
-						modules={[FreeMode, Navigation]}
-						className='mySwiper '
-					>
+					<Carousel centerMode={true} responsive={responsive} >
 						{tilesImages.map((item, i) => (
-							<SwiperSlide key={i} >
-								<div className='flex flex-col items-center justify-center min-w-[160px] max-w-[160px]'>
-									<div className='flex w-32'>
-										<Image src={item.src} width={130} height={130} />
-									</div>
-									<div className='flex justify-center w-full basis-full'>
-										<span className='text-center text-white'>{item.name}</span>
-									</div>
+
+							<div key={i} style={{ width: 160 }} className='flex flex-col items-center justify-center h-52 min-w-[160px] max-w-[160px]'>
+								<div className='flex w-[132px]'>
+									<Image alt='' src={item.src} width={130} height={130} />
 								</div>
-							</SwiperSlide>
+								<div className='flex justify-center w-full basis-full'>
+									<span className='text-center text-white'>{item.name}</span>
+								</div>
+							</div>
+
 						))}
-					</Swiper>
+					</Carousel>
+
 				</div>
 			</div>
 		</div>
