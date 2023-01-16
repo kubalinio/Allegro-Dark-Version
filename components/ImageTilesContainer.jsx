@@ -72,6 +72,8 @@ const tilesImages = [
 	},
 ];
 
+// Z sliderem spróbować z left;0 gdyz na orginale wszystkie 
+
 const ImageTilesContainer = () => {
 	const [showArrow, setShowArrow] = useState(false);
 
@@ -90,8 +92,8 @@ const ImageTilesContainer = () => {
 						modules={[FreeMode, Navigation]}
 						className='mySwiper '
 					>
-						{tilesImages.map(item => (
-							<SwiperSlide>
+						{tilesImages.map((item, i) => (
+							<SwiperSlide key={i} >
 								<div className='flex flex-col items-center justify-center min-w-[160px] max-w-[160px]'>
 									<div className='flex w-32'>
 										<Image src={item.src} width={130} height={130} />
