@@ -7,7 +7,7 @@ export const fetchProducts = async () => {
 
 	const products: Product[] = data.products;
 
-	console.log('fetching', products);
+	// console.log('fetching', products);
 
 	return products;
 };

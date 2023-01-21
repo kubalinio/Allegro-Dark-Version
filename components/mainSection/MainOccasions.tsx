@@ -2,8 +2,8 @@ import Image from 'next/image'
 import Link from 'next/link';
 import React from 'react'
 import Carousel from 'react-multi-carousel'
-import { urlFor } from '../sanity';
-import { Product } from '../typings'
+import { urlFor } from '../../sanity';
+import { Product } from '../../typings'
 
 const responsive = {
     desktop2: {
@@ -46,9 +46,9 @@ const MainOccasions = ({ products }: Props) => {
                     <h5 className='mb-4 text-xl font-bold text-white'>Warto zobaczyć</h5>
                     {/* Swiper Carousel Free mode with navigation */}
                     <Carousel centerMode={true} responsive={responsive}  >
-                        {products.map((product, i) => (
+                        {products.map((product) => (
 
-                            <div className='flex flex-col min-w-[225px] max-w-[225px] '>
+                            <div key={product._id} className='flex flex-col min-w-[225px] max-w-[225px] '>
                                 {/* //  Left Side */}
                                 <div className='relative w-full'>
                                     {/* Super cena */}

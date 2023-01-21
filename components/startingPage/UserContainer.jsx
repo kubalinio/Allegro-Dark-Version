@@ -1,10 +1,17 @@
-import React from 'react';
+import { signOut, useSession } from 'next-auth/react'
+import Link from 'next/link';
 
 const UserContainer = () => {
+	const { data: session, status } = useSession()
+
 	return (
 		<div className='hidden bg-allegro_dark h-full p-1 py-6 xl:block xl:row-start-1 xl:row-end-1 xl:col-start-5'>
 			{/* Container */}
 			<div>
+				{
+					<div>{session?.user.name}</div>
+				}
+
 				{/* content  */}
 				<div className='flex flex-col text-white'>
 					<div className='flex grow p-2'>
@@ -52,13 +59,19 @@ const UserContainer = () => {
 
 				{/* Button */}
 				<div className='flex justify-center bg-orange-500 hover:bg-orange-400 mx-4 mt-3 text-white text-center rounded-sm'>
-					<a href='/logowanie' className='uppercase px-16 py-2'>
-						zaloguj się
-					</a>
+
+					{status === "authenticated" ?
+						'' : (
+							<Link href='/logowanie' className='uppercase px-16 py-2'>
+								zaloguj się
+							</Link>
+						)}
 				</div>
 			</div>
 		</div>
 	);
 };
+
+
 
 export default UserContainer;

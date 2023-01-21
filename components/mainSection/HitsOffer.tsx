@@ -1,7 +1,7 @@
 import Image from "next/image"
 import Link from "next/link"
-import { urlFor } from "../sanity"
-import { Product } from "../typings"
+import { urlFor } from "../../sanity"
+import { Product } from "../../typings"
 
 
 type Props = {
@@ -18,7 +18,7 @@ const HitsOffer = ({ products }: Props) => {
                 <div className="flex flex-col gap-4 md:gap-2 ">
                     {products.slice(0, 4).map((product) => (
                         // Link
-                        <div>
+                        <div key={product._id} >
                             {/* // Product Card */}
                             <div className='flex'>
                                 {/* //  Left Side */}

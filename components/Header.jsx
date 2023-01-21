@@ -11,6 +11,7 @@ import {
 	ChevronDownIcon,
 } from '@heroicons/react/24/outline';
 import { useEffect, useRef, useState } from 'react';
+import { signOut, useSession } from 'next-auth/react';
 
 // Wyszukiwanie
 const Search = () => {
@@ -37,9 +38,9 @@ const Search = () => {
 				<div className='hidden relative sm:flex grow items-center border-l h-[40.2px] min-w-[130px] max-w-[185px] border-orange-600 text-white'>
 
 					<span className='absolute left-0 top-0 bottom-0 right-10 pl-3 py-2 '>Wszędzie</span>
-					<div className='w-full h-full'>
-						<select className='w-full h-full cursor-pointer bg-[#292929] pr-10 pl-2 border-2 border-black bg-inherit opacity-0 '>
-							<option value="/listing" selected>Wszystkie kategorie</option>
+					<div className='w-full h-full bg-[#292929] cursor-pointer'>
+						<select className='w-full h-full cursor-pointer pr-10 pl-2 border-2 border-black bg-inherit outline-none opacity-0 '>
+							<option value="/listing" >Wszystkie kategorie</option>
 							<optgroup label='Kategorie'>
 								<option value="/kategoria/">Dom i ogród</option>
 								<option value="/kategoria/">Dziecko</option>
@@ -72,76 +73,96 @@ const Search = () => {
 					<SearchIcon className='h-8 w-8 p-1 text-white md:hidden' />
 					<span className='hidden md:block uppercase'>szukaj</span>
 				</button>
-			</form>
-		</div>
+			</form >
+		</div >
 	)
 }
 
 // Czat
 const Chat = () => {
+	const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+	const menuRef = useRef(null);
+	const menuBtnRef = useRef(null);
+
+	const handleDropdown = () => {
+		setIsDropdownOpen(!isDropdownOpen);
+	}
+
+	const handleClickOutside = (e) => {
+		if (menuRef.current && !menuRef.current.contains(e.target) && !menuBtnRef.current.contains(e.target)) {
+			setIsDropdownOpen(false);
+		}
+	}
+
+	useEffect(() => {
+		document.addEventListener('mousedown', handleClickOutside, true);
+		return () => {
+			document.removeEventListener('mousedown', handleClickOutside, true);
+		};
+	}, []);
+
 
 	return (
-		<div className='mr-1'>
-			<ChatBubbleLeftRightIcon className='icon-nav' />
+		<div className='relative'>
+			<div ref={menuBtnRef} onClick={handleDropdown} className='mr-1'>
+				<ChatBubbleLeftRightIcon className='icon-nav' />
+			</div>
+
+			<div ref={menuRef} className={`absolute ${!isDropdownOpen ? 'hidden' : 'flex'} top-12 right-10 xl:right-8 translate-x-1/2 w-[300px] h-[400px] bg-allegro_dark-light border-2 border-black z-50`}>
+				<div className='flex flex-col justify-center items-center w-full text-white'>
+					<p className='text-center text-sm'>Zaloguj się, aby zobaczyć swoje wiadomości.</p>
+
+					{/* Button */}
+					<div className='mt-6 mb-8'>
+						<a href='/logowanie' className='uppercase px-6 py-2 bg-orange-500 hover:bg-orange-400 text-white text-center rounded-sm '>
+							zaloguj się
+						</a>
+					</div>
+				</div>
+			</div>
+
 		</div>
 	)
 }
 
 
-// const Component = () => {
-
-//     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-//     const menuRef     = useRef(null);
-//     const menuBtnRef  = useRef(null);
-
-//     const handleDropdown = (e) => {
-//         setIsDropdownOpen(!isDropdownOpen);
-//     }
-
-//     const handleClickOutside = (e) => {
-//         if (menuRef.current && !menuRef.current.contains(e.target) && !menuBtnRef.current.contains(e.target)) {
-//             setIsDropdownOpen(false);
-//         }
-//     }
-
-//     useEffect(() => {
-//         document.addEventListener('mousedown', handleClickOutside, true);
-//         return () => {
-//             document.removeEventListener('mousedown', handleClickOutside, true);
-//         };
-//     }, []);
-
-//     return (
-
-//            <button ref={menuBtnRef} onClick={handleDropdown}></button>
-
-//            <div ref={menuRef} className={`${isDropdownOpen ? styles.dropdownMenuOpen : ''}`}>
-//                 // ...dropdown items
-//            </div>
-//     )
-// }
-
-
 // Powiadomienia
 const Notifications = () => {
-	const [dropdownOpen, setDropdownOpen] = useState(false);
-	const ref = useRef(null);
+	const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+	const menuRef = useRef(null);
+	const menuBtnRef = useRef(null);
 
+	const handleDropdown = (e) => {
+		setIsDropdownOpen(!isDropdownOpen);
+	}
+
+	const handleClickOutside = (e) => {
+		if (menuRef.current && !menuRef.current.contains(e.target) && !menuBtnRef.current.contains(e.target)) {
+			setIsDropdownOpen(false);
+		}
+	}
+
+	useEffect(() => {
+		document.addEventListener('mousedown', handleClickOutside, true);
+		return () => {
+			document.removeEventListener('mousedown', handleClickOutside, true);
+		};
+	}, []);
 
 
 	return (
 		<div className='relative mr-1'>
 			{/* Icon */}
-			<div onClick={handleClickOutside} >
+			<div ref={menuBtnRef} onClick={handleDropdown} >
 				<span className='absolute bottom-0 right-4 bg-orange-500 text-white text-xs w-2 h-2 flex items-center p-2 justify-center rounded-xl'>
 					0
 				</span>
-				<BellIcon className={`icon-nav ${!dropdownOpen ? '' : 'text-orange-500'} `} />
+				<BellIcon className={`icon-nav ${!isDropdownOpen ? '' : 'text-orange-500'} `} />
 			</div>
 
 			{/* Notification Content Offline */}
 
-			<div ref={ref} className={`absolute ${!dropdownOpen ? 'hidden' : 'flex'} top-12 right-10 xl:right-8 translate-x-1/2 w-[300px] bg-white z-50 `}>
+			<div ref={menuRef} className={`absolute ${!isDropdownOpen ? 'hidden' : 'flex'} top-12 right-10 xl:right-8 translate-x-1/2 w-[300px] z-50 `}>
 				<div className='w-full text-center text-sm text-white bg-allegro_dark-light border-2 border-black p-4' >
 
 					<p>Zaloguj się, aby zobaczyć <br /> swoje powiadomienia.</p>
@@ -217,33 +238,36 @@ const Basket = () => {
 
 // UserPanel
 const UserPanel = () => {
-	const [dropdownOpen, setDropdownOpen] = useState(false);
-	const ref = useRef(null);
+	const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+	const menuRef = useRef(null);
+	const menuBtnRef = useRef(null);
+	const { data: session, status } = useSession()
 
-	const handleClickOutside = (event) => {
-		if (ref.current && !ref.current.contains(event.target)) {
-			setDropdownOpen(false);
+	const handleDropdown = (e) => {
+		setIsDropdownOpen(!isDropdownOpen);
+	}
+
+	const handleClickOutside = (e) => {
+		if (menuRef.current && !menuRef.current.contains(e.target) && !menuBtnRef.current.contains(e.target)) {
+			setIsDropdownOpen(false);
 		}
-	};
+	}
 
 	useEffect(() => {
-		document.addEventListener('click', handleClickOutside, true);
+		document.addEventListener('mousedown', handleClickOutside, true);
 		return () => {
-			document.removeEventListener('click', handleClickOutside, true);
+			document.removeEventListener('mousedown', handleClickOutside, true);
 		};
 	}, []);
 
-	const handleDropDown = () => {
-		setDropdownOpen(!dropdownOpen);
-	};
 
 	return (
 		<div className='relative mt-2 xl:ml-2'>
 			{/* Button */}
-			<button ref={ref} type='button' onClick={handleDropDown} className='flex  text-white items-center py-2'>
+			<button ref={menuBtnRef} type='button' onClick={handleDropdown} className='flex  text-white items-center py-2'>
 				<UserIcon className='icon-nav mr-0 xl:hidden' />
 				<span className='hidden xl:block whitespace-nowrap text-sm mr-2'>Moje Allegro</span>
-				<ChevronDownIcon className={`h-5 hidden xl:block ${!dropdownOpen ? '' : 'rotate-180'} `} />
+				<ChevronDownIcon className={`h-5 hidden xl:block ${!isDropdownOpen ? '' : 'rotate-180'} `} />
 			</button>
 			{/* Smart Icon */}
 			<div className='hidden xl:block whitespace-nowrap absolute text-xs text-white right-6 top-[-19%] '>
@@ -260,7 +284,7 @@ const UserPanel = () => {
 
 			{/* Panel Logowania/klienta  */}
 
-			<div ref={ref} data-role='dropdown-drop' className={`absolute top-14 xl:top-10 right-0 w-[288px] h-[400px] border-2 border-black bg-allegro_dark-light z-50 ${!dropdownOpen ? 'hidden' : 'flex'}`}>
+			<div ref={menuRef} data-role='dropdown-drop' className={`absolute top-14 xl:top-10 right-0 w-[288px] h-[400px] border-2 border-black bg-allegro_dark-light z-50 ${!isDropdownOpen ? 'hidden' : 'flex'}`}>
 
 				<div className='flex flex-col p-4'>
 					{/* Image */}
@@ -276,13 +300,21 @@ const UserPanel = () => {
 
 					{/* Button */}
 					<div className='flex justify-center bg-orange-500 hover:bg-orange-400  mt-6 text-white text-center rounded-sm'>
-						<a href='/logowanie' className='uppercase px-16 py-2'>
-							zaloguj się
-						</a>
+
+						{status === 'authenticated' ?
+							(<button onClick={() => signOut()} className='uppercase px-16 py-2'>
+								wyloguj się
+							</button>)
+							:
+							(<a href='/logowanie' className='uppercase px-16 py-2'>
+								zaloguj się
+							</a>)
+						}
+
 					</div>
 				</div>
 			</div>
-		</div>
+		</div >
 	)
 }
 
@@ -301,6 +333,7 @@ const Header = () => {
 							width={100}
 							height={40}
 							className='w-full'
+							alt=''
 						/>
 					</a>
 				</h2>
@@ -315,22 +348,18 @@ const Header = () => {
 						<EllipsisHorizontalCircleIcon className='icon-nav' />
 					</div>
 
-					<a href='/' className='mr-1'>
-						<StarIcon className='icon-nav' />
-					</a>
+					<div className='mr-1'>
+						<a href='/'>
+							<StarIcon className='icon-nav' />
+						</a>
+					</div>
 
 					<Chat />
-
 					<Notifications />
-
 					<Basket />
-
 					<UserPanel />
 				</nav>
-
 			</div>
-
-
 		</div>
 	);
 };

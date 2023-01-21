@@ -1,8 +1,8 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
-import { urlFor } from '../sanity';
-import { Product } from '../typings';
+import { urlFor } from '../../sanity';
+import { Product } from '../../typings';
 
 type Props = {
 	products: Product[]

@@ -211,8 +211,8 @@ const Navigation = () => {
 					{/* Działy */}
 					<Tab isActive={activeTab === 0}>
 						<div className='grid w-full text-white '>
-							{menuItems.map(item => (
-								<NavButton name={item.name} icon={item.icon} />
+							{menuItems.map((item, i) => (
+								<NavButton key={item.name + i} name={item.name} icon={item.icon} />
 							))}
 						</div>
 					</Tab>
@@ -220,8 +220,8 @@ const Navigation = () => {
 					{/* Korzyści */}
 					<Tab isActive={activeTab === 1}>
 						<div className='grid w-full text-white '>
-							{benefitItems.map(item => (
-								<NavButton name={item.name} icon={item.icon} />
+							{benefitItems.map((item, i) => (
+								<NavButton key={item.name + i} name={item.name} icon={item.icon} />
 							))}
 						</div>
 					</Tab>

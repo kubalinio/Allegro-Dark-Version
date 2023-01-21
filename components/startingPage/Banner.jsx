@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { useState } from 'react';
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
@@ -65,9 +66,9 @@ const Banner = () => {
 					className=' bg-allegro_dark h-full'
 					renderIndicator={customIndicators}
 				>
-					{slides.map(slide => (
-						<a href={slide.link}>
-							<img loading='lazy' src={slide.img} alt={slide.name} className='object-cover' />
+					{slides.map((slide, i) => (
+						<a key={slide.name + i} href={slide.link}>
+							<Image loading='lazy' width={800} height={255} src={slide.img} alt={slide.name} className='object-cover' />
 						</a>
 					))}
 				</Carousel>
