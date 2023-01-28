@@ -11,7 +11,7 @@ const Layout = ({ children }) => {
 			<header className=' bg-allegro_dark'>
 				<Header />
 			</header>
-			<main className='max-w-screen-2xl w-full mt-4 mx-auto bg-allegro_dark-light'>{children}</main>
+			<main className='w-full mx-auto mt-4 max-w-screen-2xl bg-allegro_dark-light'>{children}</main>
 			<footer>
 				<Footer />
 			</footer>

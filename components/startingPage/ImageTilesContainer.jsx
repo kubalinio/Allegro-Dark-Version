@@ -7,7 +7,7 @@ import Image from 'next/image';
 const responsive = {
 	desktop2: {
 		breakpoint: { max: 3000, min: 1024 },
-		items: 5
+		items: 4
 	},
 	desktop1: {
 		breakpoint: { max: 1024, min: 900 },
@@ -33,20 +33,20 @@ const responsive = {
 
 const tilesImages = [
 	{
-		name: 'Moda w niskich cenach',
-		src: 'https://a.allegroimg.com/original/12e4b1/113dc54a44ae96175c6426d5ee5a',
+		name: 'Zimowa wyprzedaż',
+		src: 'https://a.allegroimg.com/original/12eb8a/7de47ecd4f269d353e9d2ca1d9d4',
 	},
 	{
-		name: 'Moda w niskich cenach',
-		src: 'https://a.allegroimg.com/original/12e4b1/113dc54a44ae96175c6426d5ee5a',
+		name: 'Wszystko na zimę',
+		src: 'https://a.allegroimg.com/original/12f390/2e5a96cf4c91a5949650ad933aa2',
 	},
 	{
-		name: 'Moda w niskich cenach',
-		src: 'https://a.allegroimg.com/original/12e4b1/113dc54a44ae96175c6426d5ee5a',
+		name: 'Darmowe dostawy',
+		src: 'https://a.allegroimg.com/original/122be9/0da8057547d0aa56df7a62d41ff2',
 	},
 	{
-		name: 'Moda w niskich cenach',
-		src: 'https://a.allegroimg.com/original/12e4b1/113dc54a44ae96175c6426d5ee5a',
+		name: 'Pomagaj z WOŚP',
+		src: 'https://a.allegroimg.com/original/12c95d/d6917e8f42cb9f7278b3c2d8a604',
 	},
 	{
 		name: 'Moda w niskich cenach',

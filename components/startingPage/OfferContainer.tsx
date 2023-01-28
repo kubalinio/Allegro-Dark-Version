@@ -20,8 +20,7 @@ const OfferContainer = ({ products }: Props) => {
 				{/* Product */}
 				{products.slice(0, 1).map((product) => (
 					// To ma być link, ogarnąć Hydration 
-					<div key={product._id}>
-
+					<div className='relative' key={product._id}>
 						{/* // Product Card */}
 						<div className='flex'>
 							{/* //  Left Side */}
@@ -68,9 +67,11 @@ const OfferContainer = ({ products }: Props) => {
 									</li>
 									{/* Title Product */}
 									<li>
-										<Link href={`/oferta/${product.slug.current}`} className='text-xs font-bold'>
+										<Link className='absolute inset-0 peer' href={`/${product.slug.current}`} />
+
+										<h4 className='text-xs font-bold leading-5 peer-hover:text-orange-500 transition-colors duration-300'>
 											{product.title}
-										</Link>
+										</h4>
 									</li>
 									{/* Time to delivery */}
 									<li>
@@ -90,6 +91,7 @@ const OfferContainer = ({ products }: Props) => {
 							</div>
 
 						</div>
+						{/* Link */}
 
 
 					</div>

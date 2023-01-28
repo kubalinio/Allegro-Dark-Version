@@ -38,7 +38,7 @@ const Banner = () => {
 		return (
 			<button
 				className={`bg-white mx-3 rounded-full w-3 h-3 lg:mx-0 
-				 lg:w-full lg:h-[52px] lg:bg-transparent ${isSelected ? 'bg-orange-500 lg:rounded-none lg:border-t-[3px]  lg:border-orange-500 ' : ''
+				 lg:w-full lg:h-[52px] lg:bg-transparent  lg:border-t-[3px] ${isSelected ? 'bg-orange-500 lg:rounded-none   lg:border-orange-500' : 'lg:border-transparent'
 					} `}
 				onClick={onClickHandler}
 				onKeyDown={onClickHandler}
@@ -63,7 +63,7 @@ const Banner = () => {
 					showStatus={false}
 					showThumbs={false}
 					showArrows={showArrow}
-					className=' bg-allegro_dark h-full'
+					className='h-full bg-allegro_dark'
 					renderIndicator={customIndicators}
 				>
 					{slides.map((slide, i) => (

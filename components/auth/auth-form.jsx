@@ -6,19 +6,19 @@ import React, { useRef, useState } from 'react'
 
 
 const AuthForm = () => {
-    const emailInputRef = useRef();
-    const passwordInputRef = useRef();
+    // const emailInputRef = useRef();
+    // const passwordInputRef = useRef();
 
     const [enteredEmail, setEnteredEmail] = useState(false)
+    const [enteredPassword, setEnteredPassword] = useState(false)
     const [isLogin, setIsLogin] = useState(true);
     const router = useRouter();
 
-    function switchAuthModeHandler() {
-        setIsLogin(prevState => !prevState);
-    }
+    // function switchAuthModeHandler() {
+    //     setIsLogin(prevState => !prevState);
+    // }
 
     const handleEnteredEmail = (e) => {
-        console.log(e.target.value)
 
         if (e.target.value) {
             setEnteredEmail(e.target.value)
@@ -27,18 +27,25 @@ const AuthForm = () => {
         }
 
     }
+    const handleEnteredPassword = (e) => {
+        // console.log(e.target.value)
+
+        if (e.target.value) {
+            setEnteredPassword(e.target.value)
+        } else {
+            setEnteredPassword('')
+        }
+
+    }
 
     const submitHandler = async event => {
         event.preventDefault();
-
-        // const enteredEmail = emailInputRef.current.value;
-        const enteredPassword = passwordInputRef.current.value;
 
         // optional: Add validation
 
         if (isLogin) {
             // log user in
-            const result = await signIn('credentials', { redirect: false, email: enteredEmail, password: enteredPassword });
+            const result = await signIn('credentials', { redirect: false, email: setEnteredEmail, password: setEnteredPassword });
 
             if (!result.error) {
                 //set some Auth state
@@ -59,11 +66,11 @@ const AuthForm = () => {
     return (
         <section className='flex justify-center text-white' >
             <div className=' bg-allegro_dark flex grow w-full basis-full max-w-full sm:w-[84%] sm:basis-[84%] sm:max-w-[84%] md:w-[74%] md:basis-[74%] md:max-w-[540px] '  >
-                <div className='p-6 w-full'>
-                    <h2 className='text-2xl mb-4'>Zaloguj się</h2>
+                <div className='w-full p-6'>
+                    <h2 className='mb-4 text-2xl'>Zaloguj się</h2>
 
                     {/* CheckBox */}
-                    <div className='flex justify-start items-center gap-2'>
+                    <div className='flex items-center justify-start gap-2'>
                         <input value='email' id='email' type='radio' defaultChecked />
                         <label>Login lub e-mail</label>
                     </div>
@@ -71,25 +78,29 @@ const AuthForm = () => {
                     {/* Form */}
                     <form onSubmit={submitHandler} className='flex flex-col '>
 
-                        <div className='relative mt-6 w-full'>
+                        <div className='relative w-full mt-6'>
                             <input type='email' id='email' required onChange={handleEnteredEmail}
-                                className={`peer bg-allegro_dark outline-none border-2 border-orange-400 hover:border-orange-600 w-full h-10 pl-2 rounded-md focus:placeholder:text-transparent focus:border-orange-500 ${enteredEmail ? 'border-b-[3px] border-b-red-700' : ''} `} placeholder='login lub email' />
+                                className={`peer bg-allegro_dark outline-none border-2 border-orange-400 hover:border-orange-600 w-full h-10 pl-2 rounded-md focus:placeholder:text-transparent focus:border-orange-500 ${enteredEmail === '' ? 'border-b-[3px] border-b-red-700' : ''} `} placeholder='login lub email' />
 
                             <label
                                 className={`absolute top-[10px] left-2 px-2 text-sm overflow-hidden bg-allegro_dark select-none transition peer-focus:opacity-100 peer-focus:translate-y-[-21px] ${enteredEmail ? 'translate-y-[-21px] opacity-100 visible' : 'opacity-0'}`} >login lub hasło</label>
 
-                            {!enteredEmail &&
-                                <div className='text-xs mt-2 text-red-700' >Podaj login lub email</div>
+                            {enteredEmail === '' &&
+                                <div className='mt-2 text-xs text-red-700' >Podaj login lub email</div>
                             }
                         </div>
 
-                        <div className=' mt-4 w-full'>
-                            <input type='password' id='password' required ref={passwordInputRef} className='bg-allegro_dark outline-none border-2 border-orange-400 w-full h-10 pl-2 rounded-md' placeholder='hasło' />
+                        <div className='w-full mt-4 '>
+                            <input type='password' id='password' required onChange={handleEnteredPassword} className={`w-full h-10 pl-2 border-2 border-orange-400 rounded-md outline-none bg-allegro_dark ${enteredPassword === '' ? 'border-b-[3px] border-b-red-700' : ''}`} placeholder='hasło' />
+
+                            {enteredPassword === '' &&
+                                <div className='mt-2 text-xs text-red-700'>Podaj hasło</div>
+                            }
 
                         </div>
 
-                        <div className='mt-8 mb-4 w-full'>
-                            <button type='button' className=' w-full uppercase px-6 py-2 bg-orange-500 hover:bg-orange-400 text-white text-center rounded-sm '>
+                        <div className='w-full mt-8 mb-4'>
+                            <button type='button' className='w-full px-6 py-2 text-center text-white uppercase bg-orange-500 rounded-sm hover:bg-orange-400'>
                                 zaloguj się
                             </button>
                         </div>
@@ -130,20 +141,20 @@ const AuthForm = () => {
 
 export default AuthForm
 
-export const getStaticProps = async context => {
-    const session = await getSession(context)
+// export const getStaticProps = async context => {
+//     const session = await getSession(context)
 
-    if (session) {
+//     if (session) {
 
-        return {
-            redirect: {
-                destination: '/',
-                permanent: false,
-            },
-        };
-    }
+//         return {
+//             redirect: {
+//                 destination: '/',
+//                 permanent: false,
+//             },
+//         };
+//     }
 
-    return {
-        props: { session },
-    };
-};
+//     return {
+//         props: { session },
+//     };
+// };

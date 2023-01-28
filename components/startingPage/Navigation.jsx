@@ -13,6 +13,7 @@ import { FiBookOpen } from 'react-icons/fi';
 import { GiAmpleDress, GiBasket, GiLipstick, GiSoccerBall, GiTicket } from 'react-icons/gi';
 
 import { MdChildFriendly, MdHomeWork, MdLaptopMac } from 'react-icons/md';
+import Link from 'next/link';
 
 const menuItems = [
 	{
@@ -160,12 +161,12 @@ const NavHeader = ({ activeTab, onTabClicked }) => (
 					onClick={() => onTabClicked(index)}
 					data-role='navigation-item'
 					key={tab.name + index}
-					className={`flex items-center min-h-[40px] max-w-[270px] text-sm  `}
+					className={`flex items-center min-h-[40px] w-[103px] max-w-[270px] text-sm   `}
 				>
 					<button
 						type='button'
 						onClick={() => onTabClicked(index)}
-						className={`py-2 px-4 uppercase whitespace-nowrap ${activeTab === index ? 'text-orange-500' : 'text-white'
+						className={`relative py-2 px-4 w-full after:absolute after:bottom-0  after:h-[2px] after:bg-orange-500 after:transition-all after:duration-300 text-center uppercase whitespace-nowrap ${activeTab === index ? 'text-orange-500 after:w-full after:left-0' : 'text-white after:w-0 after:left-1/2 '
 							} `}
 					>
 						{tab.name}
@@ -203,23 +204,27 @@ const Navigation = () => {
 
 	return (
 		<nav className='hidden bg-allegro_dark md:flex flex-col h-full max-w-xs px-6 pt-2 md:col-end-1: md:col-start-1 md:row-start-1 md:row-end-4 '>
-			<div>
+			<div className='h-full'>
 				{/* Navigacja */}
 				<NavHeader activeTab={activeTab} onTabClicked={handleTabClicked} />
 
-				<div id='tab-dzialy' role='tab-panel' data-role='tab-panel-item' className='flex-auto relative h-full'>
+				<div id='tab-dzialy' role='tab-panel' data-role='tab-panel-item' className='flex flex-col relative h-full'>
 					{/* Działy */}
 					<Tab isActive={activeTab === 0}>
-						<div className='grid w-full text-white '>
+						<div className='grid w-full h-full text-white '>
 							{menuItems.map((item, i) => (
 								<NavButton key={item.name + i} name={item.name} icon={item.icon} />
 							))}
+							<div className='w-full text-center'>
+								<hr className='my-2' />
+								<Link className='p-4 hover:text-orange-400' href='/'>Wszystkie Kategorie</Link>
+							</div>
 						</div>
 					</Tab>
 
 					{/* Korzyści */}
 					<Tab isActive={activeTab === 1}>
-						<div className='grid w-full text-white '>
+						<div className='flex flex-col w-full h-full text-white gap-[2px] '>
 							{benefitItems.map((item, i) => (
 								<NavButton key={item.name + i} name={item.name} icon={item.icon} />
 							))}

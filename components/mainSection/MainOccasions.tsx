@@ -8,11 +8,11 @@ import { Product } from '../../typings'
 const responsive = {
     desktop2: {
         breakpoint: { max: 3000, min: 1024 },
-        items: 3
+        items: 1
     },
     desktop1: {
         breakpoint: { max: 1280, min: 900 },
-        items: 2
+        items: 1
     },
     desktop: {
         breakpoint: { max: 900, min: 768 },
@@ -38,9 +38,10 @@ type Props = {
 
 const MainOccasions = ({ products }: Props) => {
     return (
-        <div className="flex flex-col">
 
-            <div className='flex flex-col  w-full'>
+        <div className="flex flex-col  flex-grow p-6 basis-full max-w-full w-full bg-allegro_dark sm:basis-[48%] sm:max-w-[48%] sm:w-[48%] xl:basis-[33%] xl:max-w-[33%] xl:w-[33%]">
+
+            <div className='flex flex-col w-full'>
 
                 <div className='w-full'>
                     <h5 className='mb-4 text-xl font-bold text-white'>Warto zobaczyć</h5>
@@ -58,7 +59,7 @@ const MainOccasions = ({ products }: Props) => {
                                         </div>
                                     }
                                     {/* zdjecie */}
-                                    <div className='w-144 h-[144px]' >
+                                    <div className='h-[250px]' >
                                         <Image src={urlFor(product?.mainImage).url()} alt={product?.title} width={100} height={190} className='w-full h-full object-contain mt-5' />
                                     </div>
                                 </div>
@@ -123,9 +124,8 @@ const MainOccasions = ({ products }: Props) => {
             </div>
 
             {/* See more */}
-            <div className='text-gray-200 text-center px-6'>
-                <hr className='border-t-[1px] border-t-gray-400  mb-3' />
-
+            <div className='text-gray-200 text-center px-6 mt-4'>
+                <hr className='border-t-[1px] border-t-gray-400 mb-3' />
                 <Link href='/' className='uppercase tracking-wider' >Zobacz więcej</Link>
             </div>
         </div>

@@ -5,41 +5,23 @@ import useOnScreen from '../hooks/useOnScreen'
 
 import Layout from '../components/Layout'
 import StartingPage from '../components/startingPage/index'
-// import MainSection from '../components/mainSection';
-const MainSection = dynamic(() => import('../components/mainSection/index'), { ssr: false })
+
+const MainSection = dynamic(() => import('../components/mainSection/index'), { loading: () => <p className='text-xl'>Loading ...</p> })
 
 import { Product } from '../typings';
 import { fetchProducts } from '../utils/fetchProducts';
-
 
 type Props = {
 	products: Product[];
 };
 
-
 export default function Home({ products }: Props) {
-	const mainSectionRef = useRef();
-	const mainSectionValue = useOnScreen(mainSectionRef)
-	const [isMainSectionRef, setIsMainSectionRef] = useState(false)
-
-	useEffect(() => {
-
-		if (!isMainSectionRef) {
-			setIsMainSectionRef(mainSectionValue)
-		}
-
-	}, [mainSectionValue])
 
 
 	return (
 		<>
 			<StartingPage products={products} />
-			<div ref={mainSectionRef} >
-				{isMainSectionRef ?
-					(<MainSection products={products} />)
-					:
-					(<div>Loading ...</div>)}
-			</div>
+			<MainSection products={products} />
 		</>
 	);
 }
@@ -59,6 +41,6 @@ export const getStaticProps: GetStaticProps<Props> = async () => {
 		props: {
 			products,
 		},
-		revalidate: 3000,
+		revalidate: 300,
 	};
 };

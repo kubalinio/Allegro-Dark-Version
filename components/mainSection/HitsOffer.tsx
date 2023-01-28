@@ -10,15 +10,15 @@ type Props = {
 
 const HitsOffer = ({ products }: Props) => {
     return (
-        <div className="flex flex-grow basis-full max-w-full w-full sm:basis-1/2 sm:max-w-[50%] sm:w-1/2 xl:basis-[34%] xl:max-w-[34%] xl:w-[34%]">
+        <div className=" flex flex-grow basis-full max-w-full w-full bg-allegro_dark sm:basis-[49%] sm:max-w-[49%] sm:w-[49%] xl:basis-[32%] xl:max-w-[32%] xl:w-[32%]">
             <div className="px-8 py-6" >
                 <h4 className="mb-4 text-xl font-bold text-white">Hity z reklamy</h4>
 
                 {/* Product List */}
                 <div className="flex flex-col gap-4 md:gap-2 ">
-                    {products.slice(0, 4).map((product) => (
-                        // Link
-                        <div key={product._id} >
+                    {products.slice(0, 3).map((product) => (
+
+                        <div className="relative" key={product._id} >
                             {/* // Product Card */}
                             <div className='flex'>
                                 {/* //  Left Side */}
@@ -36,7 +36,7 @@ const HitsOffer = ({ products }: Props) => {
                                 </div>
 
                                 {/* right Side */}
-                                <div className='text-white leading-5 ml-2 mb-2'>
+                                <div className='text-white leading-4 ml-2 mb-2'>
                                     <ul>
                                         {/* Smart Okazja */}
                                         <li className='pt-2'>
@@ -65,9 +65,11 @@ const HitsOffer = ({ products }: Props) => {
                                         </li>
                                         {/* Title Product */}
                                         <li>
-                                            <Link href={`/oferta/${product.slug.current}`} className='text-xs font-bold '>
+                                            <Link className='absolute inset-0 peer' href={`/${product.slug.current}`} />
+
+                                            <h4 className='text-xs font-bold leading-5 peer-hover:text-orange-500 transition-colors duration-300'>
                                                 {product.title}
-                                            </Link>
+                                            </h4>
                                         </li>
                                         {/* Time to delivery */}
                                         <li>
