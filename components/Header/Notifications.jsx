@@ -26,7 +26,7 @@ const NotificationOffline = () => (
 
         <p>Nie masz jeszcze konta?</p>
 
-        <a href="/" className='px-4 py-2 leading-10 tracking-widest text-gray-400 uppercase hover:text-gray-300'>Zarejestruj się</a>
+        <a href="/rejestracja" className='px-4 py-2 leading-10 tracking-widest text-gray-400 uppercase hover:text-gray-300'>Zarejestruj się</a>
     </div>
 )
 
@@ -52,6 +52,9 @@ const Notifications = ({ status }) => {
         };
     }, []);
 
+    const navbarHeight = '60px';
+    const footerHeight = '200px';
+
     return (
 
         <div className='relative mr-1'>
@@ -59,14 +62,16 @@ const Notifications = ({ status }) => {
             <div ref={menuBtnRef} onClick={handleDropdown} className='cursor-pointer group/span' >
 
                 <BellIcon className={`icon-nav ${!isDropdownOpen ? '' : 'text-orange-500'} group-hover/span:text-orange-500 `} />
-                <span className='absolute bottom-0 flex items-center justify-center w-2 h-2 p-2 text-xs text-white bg-orange-500 right-4 rounded-xl'>
+
+                {status === 'authenticated' ? (<span className='absolute bottom-0 flex items-center justify-center w-2 h-2 p-2 text-xs text-white bg-orange-500 right-4 rounded-xl'>
                     0
-                </span>
+                </span>) : ''}
+
             </div>
 
             {/* Notification Content Offline */}
 
-            <div ref={menuRef} className={`absolute ${!isDropdownOpen ? 'hidden' : 'flex'} top-12 right-10 xl:right-8 translate-x-1/2 w-[300px] z-50 `}>
+            <div style={{ height: `calc(100vh - ${navbarHeight} - ${footerHeight})` }} ref={menuRef} className={`absolute ${!isDropdownOpen ? 'hidden' : 'flex'} top-12 right-10 xl:right-8 translate-x-1/2 w-[300px] z-50 `}>
 
                 {status === 'authenticated' ? (<NotificationOnline />) : (<NotificationOffline />)}
 

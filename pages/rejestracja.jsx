@@ -2,7 +2,7 @@ import { getSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react'
 
-import AuthForm from '../components/auth/auth-form'
+import AuthCreateForm from '../components/auth/auth-create-form'
 import AuthLayout from '../components/auth/auth-layout'
 import LoadingSpinner from '../components/LoadingSpinner';
 
@@ -28,7 +28,7 @@ const AuthPage = () => {
     //     );
     // }
 
-    return <AuthForm />
+    return <AuthCreateForm />
 }
 
 export default AuthPage

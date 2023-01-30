@@ -4,6 +4,7 @@ import Link from 'next/link';
 const UserContainer = () => {
 	const { data: session, status } = useSession()
 
+
 	return (
 		<div className='hidden h-full p-1 py-6 bg-allegro_dark xl:block xl:row-start-1 xl:row-end-1 xl:col-start-5'>
 			{/* Container */}
@@ -13,7 +14,7 @@ const UserContainer = () => {
 				<div className='flex flex-col text-white'>
 					{status === 'authenticated' ?
 						(<div className='flex p-2 grow'>
-							<p className='ml-2 text-base font-semibold'>Cześć, {session?.user.name}</p>
+							<p className='ml-2 text-base font-semibold'>Cześć, {session.user.name}</p>
 						</div>) : ''
 					}
 

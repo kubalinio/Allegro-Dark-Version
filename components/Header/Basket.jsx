@@ -3,7 +3,7 @@ import { AnimatePresence, motion } from 'framer-motion'
 
 import { ShoppingBagIcon } from '@heroicons/react/24/outline';
 
-const Basket = () => {
+const Basket = ({ status }) => {
     const [showBasketProducts, setShowBasketProducts] = useState(false)
 
     const handleShowProduct = (show) => {
@@ -21,9 +21,11 @@ const Basket = () => {
                 <div onMouseEnter={() => handleShowProduct(true)} onMouseLeave={() => handleShowProduct(false)} className='relative cursor-pointer group/span' >
 
                     <ShoppingBagIcon className={`icon-nav group-hover/span:text-orange-500 ${showBasketProducts ? 'text-orange-500' : ''}`} />
-                    <span className='absolute bottom-0 flex items-center justify-center w-2 h-2 p-2 text-xs text-white bg-orange-500 cursor-pointer right-4 rounded-xl'>
+
+                    {status === 'authenticated' ? (<span className='absolute bottom-0 flex items-center justify-center w-2 h-2 p-2 text-xs text-white bg-orange-500 cursor-pointer right-4 rounded-xl'>
                         0
-                    </span>
+                    </span>) : ''}
+
 
                 </div>
 

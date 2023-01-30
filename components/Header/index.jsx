@@ -36,6 +36,7 @@ const Chat = ({ status }) => {
 		};
 	}, []);
 
+
 	const ContentOnline = () => (
 		<p className='text-2xl text-center'>Nie masz wiadomości</p>
 	)
@@ -53,6 +54,8 @@ const Chat = ({ status }) => {
 		</>
 	)
 
+	const navbarHeight = '60px';
+	const footerHeight = '200px';
 
 	return (
 		<div className='relative'>
@@ -60,7 +63,7 @@ const Chat = ({ status }) => {
 				<ChatBubbleLeftRightIcon className='icon-nav' />
 			</div>
 
-			<div ref={menuRef} className={`absolute ${!isDropdownOpen ? 'hidden' : 'flex'} top-12 right-10 xl:right-8 translate-x-1/2 w-[300px] h-[400px] bg-allegro_dark-light border-2 border-black z-50`}>
+			<div style={{ height: `calc(100vh - ${navbarHeight} - ${footerHeight})` }} ref={menuRef} className={`absolute ${!isDropdownOpen ? 'hidden' : 'flex'} top-12 right-10 xl:right-8 translate-x-1/2 w-[300px]  bg-allegro_dark-light border-2 border-black z-50`}>
 				<div className='flex flex-col items-center justify-center w-full text-white'>
 
 					{status === 'authenticated' ? (<ContentOnline />) : (<ContentOffline />)}
@@ -70,6 +73,8 @@ const Chat = ({ status }) => {
 		</div>
 	)
 }
+//// Chat End 
+
 
 const Header = () => {
 	const { data: session, status } = useSession()

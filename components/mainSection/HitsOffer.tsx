@@ -31,12 +31,12 @@ const HitsOffer = ({ products }: Props) => {
                                     }
                                     {/* zdjecie */}
                                     <div className='w-24 h-[135px]' >
-                                        <Image src={urlFor(product?.mainImage).url()} alt={product?.title} width={100} height={190} className='w-full h-full object-cover mt-5' />
+                                        <Image src={urlFor(product?.mainImage).url()} alt={product?.title} width={100} height={190} className='object-cover w-full h-full mt-5' />
                                     </div>
                                 </div>
 
                                 {/* right Side */}
-                                <div className='text-white leading-4 ml-2 mb-2'>
+                                <div className='mb-2 ml-2 leading-4 text-white'>
                                     <ul>
                                         {/* Smart Okazja */}
                                         <li className='pt-2'>
@@ -48,7 +48,7 @@ const HitsOffer = ({ products }: Props) => {
 
                                         {/* Cena */}
                                         <li className='inline-block mt-3 mr-2'>
-                                            <span className='text-2xl font-medium'>{product.price}<span className='text-sm ml-1'>zł</span></span>
+                                            <span className='text-2xl font-medium'>{product.price}<span className='ml-1 text-sm'>zł</span></span>
                                         </li>
 
                                         {/* Smart */}
@@ -67,7 +67,7 @@ const HitsOffer = ({ products }: Props) => {
                                         <li>
                                             <Link className='absolute inset-0 peer' href={`/${product.slug.current}`} />
 
-                                            <h4 className='text-xs font-bold leading-5 peer-hover:text-orange-500 transition-colors duration-300'>
+                                            <h4 className='text-xs font-bold leading-5 transition-colors duration-300 peer-hover:text-orange-500'>
                                                 {product.title}
                                             </h4>
                                         </li>
