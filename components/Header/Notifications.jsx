@@ -69,6 +69,7 @@ const Notifications = ({ status }) => {
 
             </div>
 
+
             {/* Notification Content Offline */}
 
             <div style={{ height: `calc(100vh - ${navbarHeight} - ${footerHeight})` }} ref={menuRef} className={`absolute ${!isDropdownOpen ? 'hidden' : 'flex'} top-12 right-10 xl:right-8 translate-x-1/2 w-[300px] z-50 `}>

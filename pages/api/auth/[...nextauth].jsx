@@ -12,6 +12,7 @@ import { connectToDatabase } from '../../../lib/db';
 export const AuthOptions = {
     session: {
         jwt: true,
+
     },
 
     // Configure one or more authentication providers

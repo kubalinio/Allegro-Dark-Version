@@ -13,7 +13,7 @@ const OfferContainer = ({ products }: Props) => {
 
 		<div className='hidden relative bg-allegro_dark h-full px-6 pt-4 pb-10 xl:grid col-start-5 col-end-5 row-start-3 row-end-3 grid-cols-[100%] grid-rows-[auto 1fr auto 1fr] '>
 
-			<h5 className=' text-white font-bold'>Oferta wybrana dla Ciebie</h5>
+			<h5 className='font-bold text-white '>Oferta wybrana dla Ciebie</h5>
 
 			{/* Product */}
 			<div>
@@ -33,12 +33,12 @@ const OfferContainer = ({ products }: Props) => {
 								}
 								{/* zdjecie */}
 								<div className='w-24 h-36' >
-									<Image src={urlFor(product?.mainImage).url()} alt={product?.title} width={100} height={190} className='w-full h-full object-cover mt-5' />
+									<Image src={urlFor(product?.mainImage).url()} alt={product?.title} width={100} height={190} className='object-cover w-full h-full mt-5' />
 								</div>
 							</div>
 
 							{/* right Side */}
-							<div className='text-white ml-2 leading-5'>
+							<div className='ml-2 leading-5 text-white'>
 								<ul>
 									{/* Smart Okazja */}
 									<li className='pt-2'>
@@ -50,7 +50,7 @@ const OfferContainer = ({ products }: Props) => {
 
 									{/* Cena */}
 									<li className='inline-block mt-3 mr-2'>
-										<span className='text-2xl font-medium'>{product.price}<span className='text-sm ml-1'>zł</span></span>
+										<span className='text-2xl font-medium'>{product.price}<span className='ml-1 text-sm'>zł</span></span>
 									</li>
 
 									{/* Smart */}
@@ -67,9 +67,9 @@ const OfferContainer = ({ products }: Props) => {
 									</li>
 									{/* Title Product */}
 									<li>
-										<Link className='absolute inset-0 peer' href={`/${product.slug.current}`} />
+										<Link className='absolute inset-0 peer' href={`/product/${product.slug.current}`} />
 
-										<h4 className='text-xs font-bold leading-5 peer-hover:text-orange-500 transition-colors duration-300'>
+										<h4 className='text-xs font-bold leading-5 transition-colors duration-300 peer-hover:text-orange-500'>
 											{product.title}
 										</h4>
 									</li>
@@ -91,8 +91,6 @@ const OfferContainer = ({ products }: Props) => {
 							</div>
 
 						</div>
-						{/* Link */}
-
 
 					</div>
 
@@ -104,7 +102,7 @@ const OfferContainer = ({ products }: Props) => {
 			< div className='absolute bottom-0 w-full px-6' >
 
 				<hr className=' border-t-[1px] border-t-allegro_dark-light' />
-				<a href='/strefaokazji' className='flex justify-center py-2 uppercase text-gray-200 hover:text-white'>
+				<a href='/strefaokazji' className='flex justify-center py-2 text-gray-200 uppercase hover:text-white'>
 					Zobacz więcej ofert
 				</a>
 
